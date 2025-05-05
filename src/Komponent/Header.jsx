@@ -8,15 +8,11 @@ const Header =() => {
     };
     
     const showStartOver = location.pathname === "/Showgame";
-    
     return (
         <header>
-            <h1>Free to Game</h1>
-            {showStartOver && (
-                <button onClick={Startover}>
-                    Start Over
-                </button>
-            )}
+        <h1>Free to Game</h1>
+        {showStartOver && (
+        <button onClick={Startover}>Start Over</button>)}
         </header>
     );
 }
