@@ -1,5 +1,4 @@
 * {
-  display: fixed;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -10,7 +9,6 @@
   background-color: #4d80a0;
   height: 150px;
   width: 100%;
-  /* position: fixed; */
   top: 0;
   left: 0;
   z-index: 1000;
@@ -21,12 +19,16 @@
   color: white;
 }
 
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 .nav {
-  /* position: fixed; */
-  top: 150px; /* below the header */
-  left: 0;
-  width: 20%;
-  height: calc(100vh - 80px); /* full height minus header */
+  width: 12%;
+  min-width: 180px;
+  max-width: 250px;
   background: #f9f9f9;
   padding: 20px;
   border-right: 1px solid #ccc;
@@ -58,15 +60,12 @@
 }
 
 .game-list {
-  margin-top: -45%;
-  margin-left: 20%;
   padding: 20px;
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   background-color: #f1f1f1;
-  /* height: calc(100vh - 80px); */
-  overflow-y: auto;
 }
 
 .game-card {
@@ -74,10 +73,17 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
-  width: 200px;
-  height: 200px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(20% - 20px); /* 5 kort per rad */
+  max-width: calc(20% - 20px);
+  height: auto;
+}
+
+.game-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .game-card h3 {
@@ -94,26 +100,11 @@
   padding: 10px;
 }
 
-/* .rectangle {
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  border-radius: 10px;
-} */
-
 .free-to-game,
 .free-to-game-1 {
   font-size: 24px;
   font-weight: bold;
 }
-
-/* .flex-row-bcf {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-} */
 
 .Footer {
   display: flex;
@@ -129,20 +120,50 @@
   margin-top: 50px;
 }
 
-/* Responsive adjustments */
+/* --------------------
+   RESPONSIVE DESIGN
+--------------------- */
+
+/* Tablet-storlek */
+@media (max-width: 1024px) {
+  .game-card {
+    flex: 1 1 calc(33.33% - 20px); /* 3 per rad */
+    max-width: calc(33.33% - 20px);
+  }
+}
+
+/* Mobil: liggande */
 @media (max-width: 768px) {
-  .nav {
-    width: 100%;
-    float: none;
-    height: auto;
+  .main-layout {
+    flex-direction: column;
   }
 
-  .game-list {
+  .nav {
     width: 100%;
-    float: none;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
   }
 
   .game-card {
-    width: 100%;
+    flex: 1 1 calc(50% - 20px); /* 2 per rad */
+    max-width: calc(50% - 20px);
+  }
+}
+
+/* Mobil: stående */
+@media (max-width: 480px) {
+  .game-card {
+    flex: 1 1 100%; /* 1 per rad */
+    max-width: 100%;
+  }
+
+  .header {
+    font-size: 20px;
+    height: 100px;
+  }
+
+  .Footer {
+    font-size: 10px;
   }
 }
